@@ -20,8 +20,10 @@
                     Enter your name: 
                     <input id="user-name" type="textbox">
                 </p>
-                <button type="submit" class="btn" onclick="saveSettings()">Save</button>
-                <button type="submit" class="btn" onclick="closeModal()">Close</button>
+                <div class="modal-menu">
+                    <button type="submit" class="btn" onclick="saveSettings()">Save</button>
+                    <button type="submit" class="btn" onclick="closeModal()">Close</button>
+                </div>
             </div>
         </div>
     </div>
@@ -36,6 +38,10 @@
             <header class="greeting-container">
                 <h2 id="greeting">Welcome back!</h2>
             </header>
+
+            <ul id="bug-list">
+
+            </ul>
         </main>
 
         <aside class="add-list">
@@ -45,7 +51,7 @@
                 <input name="b-title" id="b-title" type="text" placeholder="e.g. PC not working"><br>
                 <label for="bug-description">Bug Description:</label><br>
                 <textarea name="b-descript" id="b-descript" placeholder="e.g. Not connected to power"></textarea><br>
-                <button type="submit" class="btn">Add</button>
+                <button type="submit" class="btn" onclick="postBug()">Add</button>
             </form>
         </aside>
     </div>

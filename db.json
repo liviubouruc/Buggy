@@ -1,0 +1,14 @@
+{
+    "bugs": [
+        {
+            "id": "0",
+            "title": "First bug",
+            "description": "hope it works"
+        },
+        {
+            "id": "1",
+            "title": "Second bug",
+            "description": "hope it works too"
+        }
+    ]
+}

@@ -26,3 +26,45 @@ function saveSettings() {
     
     closeModal();
 }
+
+function appendToDOM(bugs) {
+    
+}
+
+function getBugs() {
+    fetch('https://localhost:3000/bugs')
+        .then(function(response) {
+            response.json().then(function(bugs) {
+                appendToDOM(bugs);
+            });
+        });
+}
+
+function postBug() {
+    let bugTitle = document.getElementById("b-title").value;
+    let bugDesc = document.getElementById("bug-descript").value;
+    const bug = {
+        title: bugTitle,
+        description: bugDesc
+    };
+
+    fetch('https://localhost:3000/bugs', {
+        method: 'post',
+        headers: {
+            "Content-type": "application/json"
+        },
+        body: JSON.stringify(bug)
+    }).then(function() {
+        getBugs();
+    });
+}
+
+function deleteBug(id) {
+    fetch('https://localhost:3000/bugs/${id}', {
+        method: 'DELETE'
+    }).then(function() {
+        getBugs();
+    });
+}
+
+getBugs();
