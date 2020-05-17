@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="author" content="Liviu Bouruc">
+    <meta name="description" content="Bug Tracker">
+
+    <title>Buggy</title>
+    <link rel="icon" href="img/bug-ico.ico" type="image/x-icon"/>
+    <link rel="stylesheet" href="css/styles.css">
+    <script src="https://kit.fontawesome.com/8f2dcd945c.js" crossorigin="anonymous"></script>
+</head>
+<body>
+    <div id="modalSettings" class="modal-box">
+        <div class="modal-settings">
+            <div class="modal-settings-info">
+                <h1 class="modal-title">Settings</h1>
+                <p>
+                    Enter your name: 
+                    <input id="user-name" type="textbox">
+                </p>
+                <button type="submit" class="btn" onclick="saveSettings()">Save</button>
+                <button type="submit" class="btn" onclick="closeModal()">Close</button>
+            </div>
+        </div>
+    </div>
+
+    <nav>
+        <h1 class="nav-title">Buggy</h1>
+        <button onclick="openSettings()" class="nav-settings"><i class="fas fa-cog"></i></button>
+    </nav>
+    
+    <div class="body-layout">
+        <main class="main-list">
+            <header class="greeting-container">
+                <h2 id="greeting">Welcome back!</h2>
+            </header>
+        </main>
+
+        <aside class="add-list">
+            <form class="add-form">
+                <h1>Add Bug</h1>
+                <label for="bug-title">Bug Title:</label><br>
+                <input name="b-title" id="b-title" type="text" placeholder="e.g. PC not working"><br>
+                <label for="bug-description">Bug Description:</label><br>
+                <textarea name="b-descript" id="b-descript" placeholder="e.g. Not connected to power"></textarea><br>
+                <button type="submit" class="btn">Add</button>
+            </form>
+        </aside>
+    </div>
+
+    <footer>
+        <p class="footer">Designed for painful tasks</p>
+    </footer>
+
+    <script src="js/script.js"></script>
+</body>
+</html>
