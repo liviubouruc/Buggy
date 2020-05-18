@@ -165,7 +165,7 @@ button:disabled {
     background-color: rgb(0,0,0);
     background-color: rgba(0,0,0,0.1);
 }
-.modal-settings, .modal-view {
+.modal-settings, .modal-view, .modal-add {
     z-index: 10;
     background-color: #fff;
     border: 1px solid #ddd;
@@ -189,15 +189,22 @@ button:disabled {
     justify-content: space-between;
 }
 
+.ico {
+    font-size: 20px;
+}
+
 
 @media screen and (max-width: 767px) {
     .body-layout {
         grid-template-columns: 100% 0%;
     }
+    .add-list {
+        display: none;
+    }
     .nav-add {
         display: flex;
     }
-    .modal-settings, .modal-view {
+    .modal-settings, .modal-view, .modal-add {
         width: 80%;
     }
 }

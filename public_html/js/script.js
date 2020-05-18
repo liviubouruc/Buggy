@@ -1,11 +1,12 @@
 var modalSettings = document.getElementById("modalSettings");
 var modalView = document.getElementById("modalView");
+var modalAdd = document.getElementById("modalAdd");
 var bugList = document.getElementById("bug-list");
 
 function checkGreeting() {
     if(!window.localStorage.getItem("username") || window.localStorage.getItem("username" == ""))
-        document.getElementById("greeting").textContent = "Welcome back!";
-    else document.getElementById("greeting").textContent = "Welcome back, " + window.localStorage.getItem("username");
+        document.getElementById("greeting").textContent = "Welcome back! There's your list of bugs:";
+    else document.getElementById("greeting").textContent = "Welcome back, " + window.localStorage.getItem("username") + "! There's your list of bugs:";
 }
 window.onload = checkGreeting();
 
@@ -22,14 +23,19 @@ function saveSettings() {
     var Nume = document.getElementById("user-name").value;
     window.localStorage.setItem("username", Nume);
 
-    if(Nume != "") document.getElementById("greeting").textContent = "Welcome back, " + Nume + "!";
-    else document.getElementById("greeting").textContent = "Welcome back!";
+    if(Nume != "") document.getElementById("greeting").textContent = "Welcome back, " + Nume + "! There's your list of bugs:";
+    else document.getElementById("greeting").textContent = "Welcome back! There's your list of bugs:";
     
     closeModal();
 }
 
 function openSettings() {
     modalSettings.style.display = "block";
+    document.body.style.position = "fixed";
+}
+
+function openModalAdd() {
+    modalAdd.style.display = "block";
     document.body.style.position = "fixed";
 }
 
@@ -160,6 +166,7 @@ function closeModal() {
     document.body.style.position = "absolute";
     modalSettings.style.display = "none";
     modalView.style.display = "none";
+    modalAdd.style.display = "none";
 }
 
 

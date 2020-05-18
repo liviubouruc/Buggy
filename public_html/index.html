@@ -28,29 +28,38 @@
 
     <div id="modalView" class="modal-box">
         <div id="modalView-info" class="modal-view">
-            <!--
-                <h1 id="modalView-title" class="modal-title"></h1>
-            <p>Description:</p>
-            <p id="modalView-descript"></p>
-            <div class="modal-menu">
-                <button type="submit" id="editBug" class="btn">Edit</button>
-                <button type="submit" class="btn" onclick="closeModal()">Close</button>
-            </div>-->
+
+        </div>
+    </div>
+
+    <div id="modalAdd" class="modal-box">
+        <div class="modal-add">
+            <h1 class="modal-title">Add Bug</h1>
+            <form class="add-form">
+                <label for="bug-title">Bug Title:</label><br>
+                <input name="b-title" id="b-title" type="text" placeholder="e.g. PC not working"><br>
+                <label for="bug-description">Bug Description:</label><br>
+                <textarea name="b-descript" id="b-descript" placeholder="e.g. Not connected to power"></textarea><br>
+                <div class="modal-menu">
+                    <button type="submit" id="postBtn" class="btn" onclick="postBug()" disabled>Add</button>
+                    <button class="btn" onclick="closeModal()">Close</button>
+                </div>
+            </form>
         </div>
     </div>
 
     <nav>
         <h1 class="nav-title">Buggy</h1>
         <div class="nav-wrapper">
-            <button onclick="openSettings()" class="nav-add"><i class="fas fa-plus" style="font-size: 20px"></i></button>
-            <button onclick="openSettings()" class="nav-settings"><i class="fas fa-cog" style="font-size: 20px"></i></button>
+            <button onclick="openModalAdd()" class="nav-add"><i class="fas fa-plus ico"></i></button>
+            <button onclick="openSettings()" class="nav-settings"><i class="fas fa-cog ico"></i></button>
         </div>
     </nav>
     
     <div class="body-layout">
         <main class="main-list">
             <header class="greeting-container">
-                <h2 id="greeting">Welcome back!</h2>
+                <h2 id="greeting">Welcome back! There's your list of bugs:</h2>
             </header>
 
             <ul id="bug-list">
