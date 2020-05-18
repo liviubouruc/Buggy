@@ -1,4 +1,7 @@
+import { listenerCount } from "cluster";
+
 var modalSettings = document.getElementById("modalSettings");
+var bugList = document.getElementById("bug-list");
 
 function checkGreeting() {
     if(!window.localStorage.getItem("username") || window.localStorage.getItem("username" == ""))
@@ -28,7 +31,27 @@ function saveSettings() {
 }
 
 function appendToDOM(bugs) {
+    while(bugList.firstChild) bugList.removeChild(bugList.firstChild);
     
+    for(let i = 0; i < bugs.length; i++) {
+        let bugTitle = document.createElement('div');
+        bugTitle.innerText = bugs[i].title;
+        bugTitle.classList.add("bug-cap");
+
+        let solveBtn = document.createElement('button');
+        solveBtn.innerText = 'Solved';
+        solveBtn.classList.add("btn");
+        solveBtn.addEventListener('click', function() {
+            deleteBug(bugs[i].id);
+        });
+
+        let li = document.createElement('li');
+        li.appendChild(bugTitle);
+        li.appendChild(solveBtn);
+        li.classList.add("bug-elem");
+
+        bugList.appendChild(li);
+    }
 }
 
 function getBugs() {

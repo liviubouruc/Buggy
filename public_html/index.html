@@ -30,7 +30,7 @@
 
     <nav>
         <h1 class="nav-title">Buggy</h1>
-        <button onclick="openSettings()" class="nav-settings"><i class="fas fa-cog"></i></button>
+        <button onclick="openSettings()" class="nav-settings"><i class="fas fa-cog" style="font-size: 20px"></i></button>
     </nav>
     
     <div class="body-layout">
@@ -40,7 +40,18 @@
             </header>
 
             <ul id="bug-list">
-
+                <li class="bug-elem">
+                    <div class="bug-cap" onclick="openSettings()">test</div>
+                    <button type="submit" class="btn" onclick="deleteBug()">Solved</button>
+                </li>
+                <li style="display: flex; justify-content: space-between;">
+                    <span>test</span>
+                    <button type="submit" class="btn" onclick="postBug()">Add</button>
+                </li>
+                <li style="display: flex; justify-content: space-between;">
+                    <span>test</span>
+                    <button type="submit" class="btn" onclick="postBug()">Add</button>
+                </li>
             </ul>
         </main>
 

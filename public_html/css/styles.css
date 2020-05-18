@@ -56,6 +56,8 @@ nav {
 .footer {
     text-align: center;
     font-size: 20px;
+    background-color: #db4c3f;
+    color: white;
 }
 
 
@@ -66,6 +68,18 @@ nav {
 .greeting-container {
     display: flex;
     align-self: center;
+}
+.bug-elem {
+    cursor: pointer;
+    display: flex;
+    justify-content: space-between;
+}
+.bug-cap {
+    width: 100%;
+    border-bottom: 1px solid #f0f0f0;
+    font-size: 20px;
+    line-height: 21px;
+    padding: 10px 0;
 }
 
 
@@ -112,6 +126,7 @@ button:disabled {
     text-align: center;
     border: 1px solid transparent;
     border-radius: 3px;
+    max-height: 30px;
 }
 
 .modal-box {
