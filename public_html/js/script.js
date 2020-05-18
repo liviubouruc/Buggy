@@ -9,6 +9,15 @@ function checkGreeting() {
 }
 window.onload = checkGreeting();
 
+document.getElementById("b-title").addEventListener("keyup", function() {
+    let Input = document.getElementById('b-title').value;
+    if (Input != "") {
+        document.getElementById('postBtn').removeAttribute("disabled");
+    } else {
+        document.getElementById('postBtn').setAttribute("disabled", null);
+    }
+});
+
 function saveSettings() {
     var Nume = document.getElementById("user-name").value;
     window.localStorage.setItem("username", Nume);
@@ -24,7 +33,7 @@ function openSettings() {
     document.body.style.position = "fixed";
 }
 
-function editViewModal(id) {
+function editViewModal(id, title, description) {
     let modal = document.getElementById("modalView-info");
     while(modal.firstChild) modal.removeChild(modal.firstChild);
 
@@ -32,26 +41,107 @@ function editViewModal(id) {
     modalTitle.innerText = "Edit bug";
     modalTitle.classList.add("modal-title");
 
-    let auxP1 = document.createElement('p');
-    auxP1.innerText = "Bug Title";
+    let form = document.createElement('form');
+    form.action = '/plants/' + id;
+    form.method = 'POST';
+    form.id = "edit-form";
 
-    
+    let titleLabel = document.createElement('label');
+    titleLabel.htmlFor = "bug-title";
+    titleLabel.textContent = "Bug Title";
+    form.appendChild(titleLabel);
+    let br1 = document.createElement('br');
+    form.appendChild(br1);
+
+    let titleInput = document.createElement('input');
+    titleInput.name = "b-title";
+    titleInput.id = "edit-b-title";
+    titleInput.value = title;
+    form.appendChild(titleInput);
+    let br2 = document.createElement('br');
+    form.appendChild(br2);
+
+    let descriptLabel = document.createElement('label');
+    descriptLabel.htmlFor = "bug-description";
+    descriptLabel.textContent = "Bug Description";
+    form.appendChild(descriptLabel);
+    let br3 = document.createElement('br');
+    form.appendChild(br3);
+
+    let descriptTextarea = document.createElement("textarea");
+    descriptTextarea.name = "b-descript"
+    descriptTextarea.id = "edit-b-descript";
+    descriptTextarea.textContent = description;
+    form.appendChild(descriptTextarea);
+    let br4 = document.createElement('br');
+    form.appendChild(br4);
+
+    let menu = document.createElement('div');
+    menu.classList.add("modal-menu");
+
+    let saveBtn = document.createElement('button');
+    saveBtn.type = "submit";
+    saveBtn.classList.add("btn");
+    saveBtn.innerText = "Save";
+    saveBtn.addEventListener('click', function() {
+        editBug(id);
+        closeModal();
+    })
+    menu.appendChild(saveBtn);
+
+    let closeBtn = document.createElement('button');
+    closeBtn.classList.add("btn");
+    closeBtn.innerText = "Close";
+    closeBtn.addEventListener('click', function() {
+        closeModal();
+    })
+    menu.appendChild(closeBtn);
+
+    modal.appendChild(modalTitle);
+    modal.appendChild(form);
+    modal.appendChild(menu);
 }
 
-function openView(id) {
+function openView(id, title, description) {
     modalView.style.display = "block";
     document.body.style.positon = "fixed";
 
-    const res = fetch('/bugs/' + id)
-        .then((res) => { return res.json() })
-        .then((bug) => {
-            document.getElementById("modalView-title").textContent = bug.title;
-            document.getElementById("modalView-descript").textContent = bug.description;
-            document.getElementById("editBug").addEventListener('click', function() {
-                editViewModal(id);
-            });
-        });
+    let modal = document.getElementById("modalView-info");
+    while(modal.firstChild) modal.removeChild(modal.firstChild);
 
+    let modalTitle = document.createElement('h1');
+    modalTitle.innerText = title;
+    modalTitle.classList.add("modal-title");
+
+    let P = document.createElement('p');
+    P.innerText = "Description";
+
+    let modalDescript = document.createElement('p');
+    modalDescript.innerText = description;
+
+    let menu = document.createElement('div');
+    menu.classList.add("modal-menu");
+
+    let editBtn = document.createElement('button');
+    editBtn.classList.add("btn");
+    editBtn.innerText = "Edit";
+    editBtn.addEventListener('click', function() {
+        editViewModal(id, title, description);
+    })
+    menu.appendChild(editBtn);
+
+    let closeBtn = document.createElement('button');
+    closeBtn.classList.add("btn");
+    closeBtn.innerText = "Close";
+    closeBtn.addEventListener('click', function() {
+        closeModal();
+    })
+    menu.appendChild(closeBtn);
+
+    modal.appendChild(modalTitle);
+    modal.appendChild(P);
+    modal.appendChild(modalDescript);
+    modal.appendChild(menu);
 }
 
 function closeModal() {
@@ -69,7 +159,7 @@ function appendToDOM(bugs) {
         bugTitle.innerText = bugs[i].title;
         bugTitle.classList.add("bug-cap");
         bugTitle.addEventListener('click', function() {
-            openView(bugs[i].id);
+            openView(bugs[i].id, bugs[i].title, bugs[i].description);
         });
 
         let solveBtn = document.createElement('button');
@@ -116,8 +206,24 @@ function postBug() {
     });
 }
 
+function editBug(id) {
+    const bug = {
+        title: document.getElementById('edit-b-title').value,
+        description: document.getElementById('edit-b-descript').value
+    }
+    fetch(`http://localhost:3000/bugs/${id}`, {
+        method: 'PUT',
+        headers: {
+            "Content-type": "application/json"
+        },
+        body: JSON.stringify(bug)
+    }).then(function () {
+        getBugs();
+    });
+}
+
 function deleteBug(id) {
-    fetch('http://localhost:3000/bugs/${id}', {
+    fetch(`http://localhost:3000/bugs/${id}`, {
         method: 'DELETE'
     }).then(function() {
         getBugs();

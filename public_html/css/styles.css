@@ -94,7 +94,7 @@ nav {
 .add-form {
     width: 100%;
 }
-#b-title, #user-name {
+#b-title, #edit-b-title, #user-name {
     border: 1px solid #ddd;
     border-radius: 3px;
     margin-top: 6px;
@@ -105,7 +105,7 @@ nav {
 #user-name {
     width: calc(100% - 20px);
 }
-#b-descript {
+#b-descript, #edit-b-descript {
     border: 1px solid #ddd;
     border-radius: 3px;
     margin-top: 6px;
@@ -113,8 +113,12 @@ nav {
     width: 80%;
     padding: 8px;
 }
+#edit-b-title, #edit-b-descript {
+    width: calc(100% - 20px);
+}
 button:disabled {
     opacity: .3;
+    cursor: context-menu;
 }
 .btn {
     cursor: pointer;
