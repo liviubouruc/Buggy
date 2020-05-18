@@ -49,32 +49,20 @@ function editViewModal(id, title, description) {
     let titleLabel = document.createElement('label');
     titleLabel.htmlFor = "bug-title";
     titleLabel.textContent = "Bug Title";
-    form.appendChild(titleLabel);
-    let br1 = document.createElement('br');
-    form.appendChild(br1);
 
     let titleInput = document.createElement('input');
     titleInput.name = "b-title";
     titleInput.id = "edit-b-title";
     titleInput.value = title;
-    form.appendChild(titleInput);
-    let br2 = document.createElement('br');
-    form.appendChild(br2);
 
     let descriptLabel = document.createElement('label');
     descriptLabel.htmlFor = "bug-description";
     descriptLabel.textContent = "Bug Description";
-    form.appendChild(descriptLabel);
-    let br3 = document.createElement('br');
-    form.appendChild(br3);
 
     let descriptTextarea = document.createElement("textarea");
     descriptTextarea.name = "b-descript"
     descriptTextarea.id = "edit-b-descript";
     descriptTextarea.textContent = description;
-    form.appendChild(descriptTextarea);
-    let br4 = document.createElement('br');
-    form.appendChild(br4);
 
     let menu = document.createElement('div');
     menu.classList.add("modal-menu");
@@ -97,8 +85,31 @@ function editViewModal(id, title, description) {
     })
     menu.appendChild(closeBtn);
 
+    titleInput.addEventListener("keyup", function() {
+        let Input = titleInput.value;
+        if (Input != "") {
+            saveBtn.removeAttribute("disabled");
+        } else {
+            saveBtn.setAttribute("disabled", null);
+        }
+    });
+
     modal.appendChild(modalTitle);
+
+    form.appendChild(titleLabel);
+    let br1 = document.createElement('br');
+    form.appendChild(br1);
+    form.appendChild(titleInput);
+    let br2 = document.createElement('br');
+    form.appendChild(br2);
+    form.appendChild(descriptLabel);
+    let br3 = document.createElement('br');
+    form.appendChild(br3);
+    form.appendChild(descriptTextarea);
+    let br4 = document.createElement('br');
+    form.appendChild(br4);
     modal.appendChild(form);
+
     modal.appendChild(menu);
 }
 
@@ -115,6 +126,7 @@ function openView(id, title, description) {
 
     let P = document.createElement('p');
     P.innerText = "Description";
+    P.classList.add("view-modal-descript");
 
     let modalDescript = document.createElement('p');
     modalDescript.innerText = description;

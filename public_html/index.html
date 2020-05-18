@@ -41,7 +41,10 @@
 
     <nav>
         <h1 class="nav-title">Buggy</h1>
-        <button onclick="openSettings()" class="nav-settings"><i class="fas fa-cog" style="font-size: 20px"></i></button>
+        <div class="nav-wrapper">
+            <button onclick="openSettings()" class="nav-add"><i class="fas fa-plus" style="font-size: 20px"></i></button>
+            <button onclick="openSettings()" class="nav-settings"><i class="fas fa-cog" style="font-size: 20px"></i></button>
+        </div>
     </nav>
     
     <div class="body-layout">
@@ -68,7 +71,7 @@
     </div>
 
     <footer>
-        <p class="footer">Designed for painful tasks</p>
+        <p><i class="fas fa-bug"></i> Designed for painful tasks <i class="fas fa-bug"></i></p>
     </footer>
 
     <script src="js/script.js"></script>

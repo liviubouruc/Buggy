@@ -1,4 +1,3 @@
-// Import packages
 const express = require("express");
 const morgan = require("morgan");
 const bodyParser = require("body-parser");
@@ -7,17 +6,14 @@ const { v1: uuidv1 } = require('uuid');
 
 const fs = require("fs");
 
-// Aplicatia
 const app = express();
 app.use(express.static('public_html'))
 
-// Middleware
 app.use(morgan("tiny"));
 app.use(bodyParser.json());
 app.use(cors());
 
-// Create
-app.post("/bugs", (req, res) => {        //Send data to server
+app.post("/bugs", (req, res) => {
   const bugsList = readJSONFile();
   var newId = uuidv1();
   var newBug =
@@ -31,7 +27,6 @@ app.post("/bugs", (req, res) => {        //Send data to server
   res.send(bugsList);
 });
 
-// Read One
 app.get("/bugs/:id", (req, res) => {
   const bugsList = readJSONFile();
   var found = 0;
@@ -46,13 +41,11 @@ app.get("/bugs/:id", (req, res) => {
       res.send("Not found!");
 });
 
-// Read All
 app.get("/bugs", (req, res) => {
   const bugsList = readJSONFile();
   res.send(bugsList);
 });
 
-// Update
 app.put("/bugs/:id", (req, res) => {
   const bugsList = readJSONFile();
   var found = 0;
@@ -70,7 +63,6 @@ app.put("/bugs/:id", (req, res) => {
       res.send("Not found");
 });
 
-// Delete
 app.delete("/bugs/:id", (req, res) => {
   const bugsList = readJSONFile();
     var found = 0;
@@ -87,11 +79,10 @@ app.delete("/bugs/:id", (req, res) => {
 
 });
 
-// Functia de citire din fisierul db.json
 function readJSONFile() {
   return JSON.parse(fs.readFileSync("db.json"))["bugs"];
 }
-// Functia de scriere in fisierul db.json
+
 function writeJSONFile(content) {
   fs.writeFileSync(
     "db.json",

@@ -2,9 +2,10 @@ html, body {
     margin: 0;
     padding: 0;
     height: auto;
-    min-height: 100vh;
+    min-height: calc(100vh - 44px);
     width: 100%;
     background-color: white;
+    font-family: 'Segoe UI'
 }
 
 
@@ -25,8 +26,14 @@ nav {
     font-size: 25px;
     font-weight: 800;
     margin: 0;
+    cursor: context-menu;
 }
-.nav-settings {
+.nav-wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.nav-settings, .nav-add {
     height: 28px;
     display: flex;
     background-color: #db4c3f;
@@ -39,13 +46,16 @@ nav {
     color: white;
     margin-right: 50px;
 }
-.nav-settings:hover {
+.nav-add {
+    display: none;
+}
+.nav-settings:hover, .nav-add:hover {
     background: hsla(0,0%,100%,.2);
 }
 
 
 .body-layout {
-    height: calc(100vh - 44px);
+    height: calc(calc(100vh - 44px) - 44px);
     margin-top: 44px;
     display: grid;
     grid-template-columns: 3fr 1fr;
@@ -53,11 +63,16 @@ nav {
     grid-template-areas:
         "main-list add-list"
 }
-.footer {
-    text-align: center;
+footer {
+    bottom:0;
     font-size: 20px;
     background-color: #db4c3f;
     color: white;
+    height: 44px;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 
@@ -75,6 +90,11 @@ nav {
     justify-content: space-between;
     align-items: center;
     border-bottom: 1px solid #f0f0f0;
+    padding: 4px 10px;
+    border-radius: 5px;
+}
+.bug-elem:hover {
+    background-color: rgba(0,0,0,0.1);
 }
 .bug-cap {
     width: 100%;
@@ -151,16 +171,33 @@ button:disabled {
     border: 1px solid #ddd;
     box-shadow: 0 1px 8px 0 rgba(0,0,0,.08);
     padding: 10px 20px 20px;
-    margin: 14% 35% auto;
+    margin: 15% auto;
     height: auto;
-    width: 400px;
+    width: 50%;
     border-radius: 3px;
 }
 .modal-title {
     text-align: center;
     font-size: 23px;
 }
+.view-modal-descript {
+    border-bottom: 1px solid #f0f0f0;
+    padding: 4px 0;
+}
 .modal-menu {
     display: flex;
     justify-content: space-between;
+}
+
+
+@media screen and (max-width: 767px) {
+    .body-layout {
+        grid-template-columns: 100% 0%;
+    }
+    .nav-add {
+        display: flex;
+    }
+    .modal-settings, .modal-view {
+        width: 80%;
+    }
 }
