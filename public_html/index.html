@@ -14,16 +14,26 @@
 <body>
     <div id="modalSettings" class="modal-box">
         <div class="modal-settings">
-            <div class="modal-settings-info">
-                <h1 class="modal-title">Settings</h1>
-                <p>
-                    Enter your name: 
-                    <input id="user-name" type="textbox">
-                </p>
-                <div class="modal-menu">
-                    <button type="submit" class="btn" onclick="saveSettings()">Save</button>
-                    <button type="submit" class="btn" onclick="closeModal()">Close</button>
-                </div>
+            <h1 class="modal-title">Settings</h1>
+            <p>
+                Enter your name: 
+                <input id="user-name" type="textbox">
+            </p>
+            <div class="modal-menu">
+                <button type="submit" class="btn" onclick="saveSettings()">Save</button>
+                <button type="submit" class="btn" onclick="closeModal()">Close</button>
+            </div>
+        </div>
+    </div>
+
+    <div id="modalView" class="modal-box">
+        <div class="modal-view">
+            <h1 id="modalView-title" class="modal-title"></h1>
+            <p>Description:</p>
+            <p id="modalView-descript"></p>
+            <div class="modal-menu">
+                <button type="submit" id="editBug" class="btn">Edit</button>
+                <button type="submit" class="btn" onclick="closeModal()">Close</button>
             </div>
         </div>
     </div>
@@ -41,16 +51,8 @@
 
             <ul id="bug-list">
                 <li class="bug-elem">
-                    <div class="bug-cap" onclick="openSettings()">test</div>
+                    <div class="bug-cap" onclick="openView()">test</div>
                     <button type="submit" class="btn" onclick="deleteBug()">Solved</button>
-                </li>
-                <li style="display: flex; justify-content: space-between;">
-                    <span>test</span>
-                    <button type="submit" class="btn" onclick="postBug()">Add</button>
-                </li>
-                <li style="display: flex; justify-content: space-between;">
-                    <span>test</span>
-                    <button type="submit" class="btn" onclick="postBug()">Add</button>
                 </li>
             </ul>
         </main>

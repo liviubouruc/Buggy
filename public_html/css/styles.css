@@ -73,10 +73,11 @@ nav {
     cursor: pointer;
     display: flex;
     justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid #f0f0f0;
 }
 .bug-cap {
     width: 100%;
-    border-bottom: 1px solid #f0f0f0;
     font-size: 20px;
     line-height: 21px;
     padding: 10px 0;
@@ -126,7 +127,7 @@ button:disabled {
     text-align: center;
     border: 1px solid transparent;
     border-radius: 3px;
-    max-height: 30px;
+    height: 30px;
 }
 
 .modal-box {
@@ -140,7 +141,7 @@ button:disabled {
     background-color: rgb(0,0,0);
     background-color: rgba(0,0,0,0.1);
 }
-.modal-settings {
+.modal-settings, .modal-view {
     z-index: 10;
     background-color: #fff;
     border: 1px solid #ddd;
