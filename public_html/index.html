@@ -37,11 +37,11 @@
             <h1 class="modal-title">Add Bug</h1>
             <form class="add-form">
                 <label for="bug-title">Bug Title:</label><br>
-                <input name="b-title" id="b-title" type="text" placeholder="e.g. PC not working"><br>
+                <input name="b-title" id="modal-b-title" type="text" placeholder="e.g. PC not working"><br>
                 <label for="bug-description">Bug Description:</label><br>
-                <textarea name="b-descript" id="b-descript" placeholder="e.g. Not connected to power"></textarea><br>
+                <textarea name="b-descript" id="modal-b-descript" placeholder="e.g. Not connected to power"></textarea><br>
                 <div class="modal-menu">
-                    <button type="submit" id="postBtn" class="btn" onclick="postBug()" disabled>Add</button>
+                    <button type="submit" id="postMBtn" class="btn" onclick="postMBug()" disabled>Add</button>
                     <button class="btn" onclick="closeModal()">Close</button>
                 </div>
             </form>

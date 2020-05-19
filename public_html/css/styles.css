@@ -114,7 +114,7 @@ footer {
 .add-form {
     width: 100%;
 }
-#b-title, #edit-b-title, #user-name {
+#b-title, #modal-b-title, #edit-b-title, #user-name {
     border: 1px solid #ddd;
     border-radius: 3px;
     margin-top: 6px;
@@ -125,7 +125,7 @@ footer {
 #user-name {
     width: calc(100% - 20px);
 }
-#b-descript, #edit-b-descript {
+#b-descript, #modal-b-descript, #edit-b-descript {
     border: 1px solid #ddd;
     border-radius: 3px;
     margin-top: 6px;
@@ -206,5 +206,8 @@ button:disabled {
     }
     .modal-settings, .modal-view, .modal-add {
         width: 80%;
+    }
+    #bug-list {
+        padding: 0px;
     }
 }

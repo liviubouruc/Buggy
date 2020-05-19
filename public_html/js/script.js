@@ -18,6 +18,14 @@ document.getElementById("b-title").addEventListener("keyup", function() {
         document.getElementById('postBtn').setAttribute("disabled", null);
     }
 });
+document.getElementById("modal-b-title").addEventListener("keyup", function() {
+    let Input = document.getElementById('modal-b-title').value;
+    if (Input != "") {
+        document.getElementById('postMBtn').removeAttribute("disabled");
+    } else {
+        document.getElementById('postMBtn').setAttribute("disabled", null);
+    }
+});
 
 function saveSettings() {
     var Nume = document.getElementById("user-name").value;
@@ -209,6 +217,24 @@ function getBugs() {
 function postBug() {
     let bugTitle = document.getElementById("b-title").value;
     let bugDesc = document.getElementById("b-descript").value;
+    const bug = {
+        title: bugTitle,
+        description: bugDesc
+    };
+
+    fetch('/bugs', {
+        method: 'post',
+        headers: {
+            "Content-type": "application/json"
+        },
+        body: JSON.stringify(bug)
+    }).then(function() {
+        getBugs();
+    });
+}
+function postMBug() {
+    let bugTitle = document.getElementById("modal-b-title").value;
+    let bugDesc = document.getElementById("modal-b-descript").value;
     const bug = {
         title: bugTitle,
         description: bugDesc
