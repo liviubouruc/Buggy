@@ -3,6 +3,8 @@
 ## Proiectul la [laboratorul de tehnici web](https://github.com/WebToLearn/laborator-tehnici-web)
 ### Tema: Construiti o aplicatie web care respecte criteriile de acceptanta si cerintele de mai jos. Tematica site-ului este la libera alegere.
 
+![](public_html/img/Capture1.PNG)
+
 ### Criterii de acceptanta:
 
 - [x] aplicatia sa fie Single Page Application
