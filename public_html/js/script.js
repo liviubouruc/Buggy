@@ -3,6 +3,29 @@ var modalView = document.getElementById("modalView");
 var modalAdd = document.getElementById("modalAdd");
 var bugList = document.getElementById("bug-list");
 
+var timer;
+var timerStart;
+var timeOnBuggy = getTimeSpent();
+
+function getTimeSpent() {
+    timeOnBuggy = parseInt(localStorage.getItem('timeOnSite'));
+    timeOnBuggy = isNaN(timeOnBuggy) ? 0 : timeOnBuggy;
+    return timeOnBuggy;
+}
+function countTime() {
+    timerStart = Date.now();
+    timer = setInterval(function() {
+        timeOnBuggy = getTimeSpent() + (Date.now() - timerStart);
+        localStorage.setItem('timeOnSite', timeOnBuggy);
+        timerStart = Date.now();
+
+        var afis = parseInt(timeOnBuggy/1000/60/60) > 0 ? parseInt(timeOnBuggy/1000/60/60) + " hours " : "";
+        afis += (parseInt(timeOnBuggy/1000/60) > 0 ? parseInt(timeOnBuggy/1000/60)%60 + " minutes " : "");
+        document.getElementById("footerTime").textContent = afis + parseInt(timeOnBuggy/1000)%60 + " seconds";
+    }, 1000);
+}
+window.onload = countTime();
+
 function showNamePrompt() {
     var nume = prompt("Cum te numesti?", "Liviu");
     if(nume != null) {
