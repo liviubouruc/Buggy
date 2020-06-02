@@ -3,6 +3,17 @@ var modalView = document.getElementById("modalView");
 var modalAdd = document.getElementById("modalAdd");
 var bugList = document.getElementById("bug-list");
 
+function showNamePrompt() {
+    var nume = prompt("Cum te numesti?", "Liviu");
+    if(nume != null) {
+        document.title = "Salut, " + nume + "!";
+        setTimeout(function() {
+            document.title = "Buggy";
+        }, 2000);
+    }
+}
+window.onload = showNamePrompt();
+
 function checkGreeting() {
     if(!window.localStorage.getItem("username") || window.localStorage.getItem("username" == ""))
         document.getElementById("greeting").textContent = "Welcome back! There's your list of bugs:";
