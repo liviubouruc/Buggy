@@ -3,9 +3,9 @@ var modalView = document.getElementById("modalView");
 var modalAdd = document.getElementById("modalAdd");
 var bugList = document.getElementById("bug-list");
 
-var timer;
-var timerStart;
-var timeOnBuggy = getTimeSpent();
+//-------------- Task 4, 1p ------------------------------------------------------
+
+var timeOnBuggy;
 
 function getTimeSpent() {
     timeOnBuggy = parseInt(localStorage.getItem('timeOnSite'));
@@ -13,11 +13,9 @@ function getTimeSpent() {
     return timeOnBuggy;
 }
 function countTime() {
-    timerStart = Date.now();
-    timer = setInterval(function() {
-        timeOnBuggy = getTimeSpent() + (Date.now() - timerStart);
+    var timer = setInterval(function() {
+        timeOnBuggy = getTimeSpent() + 1000;
         localStorage.setItem('timeOnSite', timeOnBuggy);
-        timerStart = Date.now();
 
         var afis = parseInt(timeOnBuggy/1000/60/60) > 0 ? parseInt(timeOnBuggy/1000/60/60) + " hours " : "";
         afis += (parseInt(timeOnBuggy/1000/60) > 0 ? parseInt(timeOnBuggy/1000/60)%60 + " minutes " : "");
@@ -25,6 +23,58 @@ function countTime() {
     }, 1000);
 }
 window.onload = countTime();
+
+//-------------- Task 13, 1.5p ------------------------------------------------------
+
+function checkIdle() {
+    var idleTimer, sec, added = 0;
+    resetTimer();
+    window.onmousemove = resetTimer;
+    window.onmousedown = resetTimer;       
+    window.ontouchstart = resetTimer; 
+    window.onclick = resetTimer;     
+    window.onkeypress = resetTimer;   
+    window.addEventListener('scroll', resetTimer, true);
+
+    let idleModal = document.createElement('div');
+    idleModal.classList.add("modal-box");
+    let auxDiv = document.createElement('div');
+    auxDiv.classList.add("modal-settings");
+    idleModal.appendChild(auxDiv);
+    let idleModalTitle = document.createElement('h1');
+    idleModalTitle.classList.add("modal-title");
+    auxDiv.appendChild(idleModalTitle);
+
+    function idle() {
+        document.getElementsByTagName('body')[0].appendChild(idleModal);
+        idleModal.style.display = "block";
+        document.body.style.position = "fixed";
+        added = 1;
+        
+        sec = 4;
+        idleInterval = setInterval(function(){
+            sec++;
+            idleModalTitle.textContent = "Ai fost inactiv " + sec + " secunde";
+        }, 1000);
+    }
+
+    function resetTimer() {
+
+        if(added) {
+            document.getElementsByTagName('body')[0].removeChild(document.getElementsByTagName('body')[0].lastChild);
+            document.body.style.position = "absolute";
+            idleModal.style.display = "none";
+            clearInterval(idleInterval);
+            added = 0;
+        }
+
+        clearTimeout(idleTimer);
+        idleTimer = setTimeout(idle, 15000);
+    }
+}
+window.onload = checkIdle();
+
+//-------------- Task 16, 0.5p ------------------------------------------------------
 
 function showNamePrompt() {
     var nume = prompt("Cum te numesti?", "Liviu");
@@ -36,6 +86,24 @@ function showNamePrompt() {
     }
 }
 window.onload = showNamePrompt();
+
+//-------------- Task 2, 1p ------------------------------------------------------
+
+function afisTreptat(to, message) {
+    let i = 0;
+    document.getElementById(to).textContent = "";
+    let interval = setInterval(function() {
+        document.getElementById(to).textContent += message.charAt(i);
+        i++;
+        if(i > message.length)
+            clearInterval(interval);
+
+    }, 1000/3);
+}
+window.onload = afisTreptat("nav-title", "Buggy");
+window.onload = afisTreptat("side-title", "Add Bug");
+
+//--------------------------------------------------------------------------------
 
 function checkGreeting() {
     if(!window.localStorage.getItem("username") || window.localStorage.getItem("username" == ""))
@@ -63,7 +131,7 @@ document.getElementById("modal-b-title").addEventListener("keyup", function() {
 
 function saveSettings() {
     var Nume = document.getElementById("user-name").value;
-    window.localStorage.setItem("username", Nume);
+    window.localStorage.setItem("username", Nume); 
 
     if(Nume != "") document.getElementById("greeting").textContent = "Welcome back, " + Nume + "! There's your list of bugs:";
     else document.getElementById("greeting").textContent = "Welcome back! There's your list of bugs:";
