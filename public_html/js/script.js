@@ -46,12 +46,13 @@ function checkIdle() {
     auxDiv.appendChild(idleModalTitle);
 
     function idle() {
+        idleModalTitle.textContent = "";
         document.getElementsByTagName('body')[0].appendChild(idleModal);
         idleModal.style.display = "block";
         document.body.style.position = "fixed";
         added = 1;
         
-        sec = 4;
+        sec = 14;
         idleInterval = setInterval(function(){
             sec++;
             idleModalTitle.textContent = "Ai fost inactiv " + sec + " secunde";
@@ -112,6 +113,35 @@ function checkGreeting() {
 }
 window.onload = checkGreeting();
 
+//-------------- Task 10, 1p ------------------------------------------------------
+function resetFont() {
+    document.getElementsByTagName('footer')[0].style.fontSize = "20px";
+    document.getElementById("font-select").value = "mediu";
+    window.localStorage.removeItem("fontSize");
+}
+
+function checkFontSize() {
+    if(window.localStorage.getItem("fontSize")) {
+        var select = document.getElementById("font-select");
+        let fSize = window.localStorage.getItem("fontSize");
+
+        if(fSize == "mic") {
+            document.getElementsByTagName('footer')[0].style.fontSize = "16px";
+            select.value = "mic";
+        }
+        else if(fSize == "mediu") {
+            document.getElementsByTagName('footer')[0].style.fontSize = "20px";
+            select.value = "mediu";
+        }
+        else {
+            document.getElementsByTagName('footer')[0].style.fontSize = "24px";
+            select.value = "mare";
+        }
+    }
+}
+window.onload = checkFontSize();
+//---------------------------------------------------------------------------------
+
 document.getElementById("b-title").addEventListener("keyup", function() {
     let Input = document.getElementById('b-title').value;
     if (Input != "") {
@@ -135,7 +165,24 @@ function saveSettings() {
 
     if(Nume != "") document.getElementById("greeting").textContent = "Welcome back, " + Nume + "! There's your list of bugs:";
     else document.getElementById("greeting").textContent = "Welcome back! There's your list of bugs:";
-    
+    //----------- Task 10, 1p ----------------------------------------------------------
+    var select = document.getElementById("font-select");
+    var fSize = select.options[select.selectedIndex].value;
+
+    window.localStorage.setItem("fontSize", fSize);
+    if(fSize == "mic") {
+        document.getElementsByTagName('footer')[0].style.fontSize = "16px";
+        select.value = "mic";
+    }
+    else if(fSize == "mediu") {
+        document.getElementsByTagName('footer')[0].style.fontSize = "20px";
+        select.value = "mediu";
+    }
+    else {
+        document.getElementsByTagName('footer')[0].style.fontSize = "24px";
+        select.value = "mare";
+    }
+    //----------------------------------------------------------------------------------
     closeModal();
 }
 

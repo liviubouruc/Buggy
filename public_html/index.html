@@ -19,6 +19,13 @@
                 Enter your name: 
                 <input id="user-name" type="textbox">
             </p>
+            <label for="font-select">Select your font size for the footer:</label><br>
+            <select id="font-select">
+                <option value="mic">Mic</option>
+                <option value="mediu" selected="selected">Mediu</option>
+                <option value="mare">Mare</option>
+            </select><br><br>
+            <button class="btn" onclick="resetFont()">Reset font</button><br><br>
             <div class="modal-menu">
                 <button type="submit" class="btn" onclick="saveSettings()">Save</button>
                 <button type="submit" class="btn" onclick="closeModal()">Close</button>
